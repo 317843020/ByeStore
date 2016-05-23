@@ -1,4 +1,6 @@
-.settiings
+.settings
 .project
 .classpath
-.hahha
+/target/
+/WebContent/
+/bin/
