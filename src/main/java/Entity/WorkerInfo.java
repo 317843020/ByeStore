@@ -1,27 +1,21 @@
 package Entity;
 
-public class UserInfo {
-    private String loginid;
-
+public class WorkerInfo extends WorkerInfoKey {
     private String loginpwd;
 
     private String salt;
+
+    private String name;
 
     private String email;
 
     private String phone;
 
+    private String id;
+
+    private String type;
+
     private String state;
-
-    private String name;
-
-    public String getLoginid() {
-        return loginid;
-    }
-
-    public void setLoginid(String loginid) {
-        this.loginid = loginid == null ? null : loginid.trim();
-    }
 
     public String getLoginpwd() {
         return loginpwd;
@@ -37,6 +31,14 @@ public class UserInfo {
 
     public void setSalt(String salt) {
         this.salt = salt == null ? null : salt.trim();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public String getEmail() {
@@ -55,19 +57,27 @@ public class UserInfo {
         this.phone = phone == null ? null : phone.trim();
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
+    }
+
     public String getState() {
         return state;
     }
 
     public void setState(String state) {
         this.state = state == null ? null : state.trim();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
     }
 }
