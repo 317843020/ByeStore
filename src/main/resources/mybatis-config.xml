@@ -16,12 +16,7 @@
     </environment>
   </environments>
   <mappers>
-    
-    <mapper resource="Entity/BrandInfoMapper.xml"/>
-     <mapper resource="Entity/StyleInfoMapper.xml"/>
-     <mapper resource="Entity/CartInfoMapper.xml"/>
-     <mapper resource="Entity/ItemInfoMapper.xml"/>
-     <mapper resource="Entity/ItemCommentsInfoMapper.xml"/>
-    <!-- <mapper resource="Entity/CourseInfoMapper.xml" /> -->
+    <mapper resource="Entity/UserInfoMapper.xml"/>
+    <mapper resource="Entity/CourseInfoMapper.xml" />
   </mappers>
 </configuration>
