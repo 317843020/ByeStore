@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="DaoImpl.ItemInfoMapper" >
+  <resultMap id="BaseResultMap" type="Entity.ItemInfo" >
+    <id column="itemNo" property="itemno" jdbcType="VARCHAR" />
+    <result column="stuff" property="stuff" jdbcType="VARCHAR" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
+    <result column="locate" property="locate" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="imagePath" property="imagepath" jdbcType="VARCHAR" />
+    <result column="saleCount" property="salecount" jdbcType="INTEGER" />
+    <result column="adminID" property="adminid" jdbcType="CHAR" />
+    <result column="brandName" property="brandname" jdbcType="VARCHAR" />
+    <result column="styleName" property="stylename" jdbcType="VARCHAR" />
+    <result column="itemName" property="stylename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    itemNo, stuff, color, locate, price, quantity, imagePath, saleCount, adminID, brandName, 
+    styleName
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from item
+    where itemNo = #{itemno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from item
+    where itemNo = #{itemno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="Entity.ItemInfo" >
+    insert into item (itemNo, stuff, color, 
+      locate, price, quantity, 
+      imagePath, saleCount, adminID, 
+      brandName, styleName,itemName)
+    values (#{itemno,jdbcType=VARCHAR}, #{stuff,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}, 
+      #{locate,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{quantity,jdbcType=INTEGER}, 
+      #{imagepath,jdbcType=VARCHAR}, #{salecount,jdbcType=INTEGER}, #{adminid,jdbcType=CHAR}, 
+      #{brandname,jdbcType=VARCHAR}, #{stylename,jdbcType=VARCHAR},#{itemname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="Entity.ItemInfo" >
+    insert into item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemno != null" >
+        itemNo,
+      </if>
+      <if test="stuff != null" >
+        stuff,
+      </if>
+      <if test="color != null" >
+        color,
+      </if>
+      <if test="locate != null" >
+        locate,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="imagepath != null" >
+        imagePath,
+      </if>
+      <if test="salecount != null" >
+        saleCount,
+      </if>
+      <if test="adminid != null" >
+        adminID,
+      </if>
+      <if test="brandname != null" >
+        brandName,
+      </if>
+      <if test="stylename != null" >
+        styleName,
+      </if>
+      <if test="itemname != null" >
+        itemName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemno != null" >
+        #{itemno,jdbcType=VARCHAR},
+      </if>
+      <if test="stuff != null" >
+        #{stuff,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="locate != null" >
+        #{locate,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="imagepath != null" >
+        #{imagepath,jdbcType=VARCHAR},
+      </if>
+      <if test="salecount != null" >
+        #{salecount,jdbcType=INTEGER},
+      </if>
+      <if test="adminid != null" >
+        #{adminid,jdbcType=CHAR},
+      </if>
+      <if test="brandname != null" >
+        #{brandname,jdbcType=VARCHAR},
+      </if>
+      <if test="stylename != null" >
+        #{stylename,jdbcType=VARCHAR},
+      </if>
+      <if test="itemname != null" >
+        #{itemname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="Entity.ItemInfo" >
+    update item
+    <set >
+      <if test="stuff != null" >
+        stuff = #{stuff,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="locate != null" >
+        locate = #{locate,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="imagepath != null" >
+        imagePath = #{imagepath,jdbcType=VARCHAR},
+      </if>
+      <if test="salecount != null" >
+        saleCount = #{salecount,jdbcType=INTEGER},
+      </if>
+      <if test="adminid != null" >
+        adminID = #{adminid,jdbcType=CHAR},
+      </if>
+      <if test="brandname != null" >
+        brandName = #{brandname,jdbcType=VARCHAR},
+      </if>
+      <if test="stylename != null" >
+        styleName = #{stylename,jdbcType=VARCHAR},
+      </if>
+      <if test="itemname != null" >
+        itemName = #{itemname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where itemNo = #{itemno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="Entity.ItemInfo" >
+    update item
+    set stuff = #{stuff,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR},
+      locate = #{locate,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      quantity = #{quantity,jdbcType=INTEGER},
+      imagePath = #{imagepath,jdbcType=VARCHAR},
+      saleCount = #{salecount,jdbcType=INTEGER},
+      adminID = #{adminid,jdbcType=CHAR},
+      brandName = #{brandname,jdbcType=VARCHAR},
+      styleName = #{stylename,jdbcType=VARCHAR}
+      itemName = #{itemname,jdbcType=VARCHAR}
+    where itemNo = #{itemno,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByBrandName" resultMap="BaseResultMap" parameterType="java.lang.String">
+  select * from Item
+  where brandName=#{brandname,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByStyleName" resultMap="BaseResultMap" parameterType="java.lang.String">
+  select * from Item
+  where styleName=#{stylename,jdbcType=VARCHAR}
+  </select>
+  <select id="fuzzySelect" resultMap="BaseResultMap" parameterType="java.lang.String">
+  select * from Item
+  where 
+  styleName like CONCAT('%','${_parameter}','%' )  or
+  brandName like CONCAT('%','${_parameter}','%' ) or
+  itemName  like CONCAT('%','${_parameter}','%' ) or
+  stuff  like CONCAT('%','${_parameter}','%' ) 
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="INTEGER">
+  <!-- http://blog.csdn.net/liaoxiaohua1981/article/details/6862764 
+  基本数据类型：包含int,String,Date等。基本数据类型作为传参，只能传入一个。通过#{参数名} 即可获取传入的值
+  另外MyBatis还提供了一个使用注解来参入多个参数的方式。这种方式需要在接口的参数上添加@Param注解
+ 
+  -->
+  select * from Item 
+  Order by saleCount Desc
+  limit #{head,jdbcType=INTEGER},#{count,jdbcType=INTEGER}
+  </select>
+  
+</mapper>

@@ -1,4 +1,4 @@
-package Service;
+/*package Service;
 
 import java.util.List;
 
@@ -12,3 +12,4 @@ public interface CourseService {
 	int insert(CourseInfo userInfo);
 	
 }
+*/
