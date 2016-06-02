@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="DaoImpl.CartInfoMapper" >
+  <resultMap id="BaseResultMap" type="Entity.CartInfo" >
+    <id column="loginId" property="loginid" jdbcType="VARCHAR" />
+    <id column="itemNo" property="itemno" jdbcType="VARCHAR" />
+    <result column="itemQuantity" property="itemquantity" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="Entity.CartInfoKey" >
+    delete from cart
+    where loginId = #{loginid,jdbcType=VARCHAR}
+      and itemNo = #{itemno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="Entity.CartInfoKey" >
+    insert into cart (loginId, itemNo)
+    values (#{loginid,jdbcType=VARCHAR}, #{itemno,jdbcType=VARCHAR})
+  </insert>
+  <select id="showCartInfo" resultMap="DaoImpl.ItemInfoMapper.BaseResultMap" parameterType="Entity.CartInfoKey">
+  SELECT * FROM Item
+		WHERE itemNo IN 
+		(SELECT Cart.`itemNo` FROM Cart 
+       where loginId = #{loginid,jdbcType=VARCHAR}
+      )
+  </select>
+  <insert id="insertSelective" parameterType="Entity.CartInfoKey" >
+    insert into cart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loginid != null" >
+        LoginId,
+      </if>
+      <if test="itemNo != null" >
+        itemNo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loginid != null" >
+        #{loginid,jdbcType=VARCHAR},
+      </if>
+      <if test="itemNo != null" >
+        #{itemno,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="auditItemQuantity" parameterType="Entity.CartInfo">
+  update Cart 
+  <set> 
+  itemQuantity=#{itemquantity,jdbcType=INTEGER}
+  </set>
+   where loginId = #{loginid,jdbcType=VARCHAR}
+      and itemNo = #{itemno,jdbcType=VARCHAR} 
+  
+  </update>
+</mapper>

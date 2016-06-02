@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="DaoImpl.ExpressCompanyInfoMapper" >
+  <resultMap id="BaseResultMap" type="Entity.ExpressCompanyInfo" >
+    <id column="companyNo" property="companyno" jdbcType="VARCHAR" />
+    <result column="companyName" property="companyname" jdbcType="VARCHAR" />
+    <result column="companyPhone" property="companyphone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    companyNo, companyName, companyPhone
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from express_company
+    where companyNo = #{companyno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from express_company
+    where companyNo = #{companyno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="Entity.ExpressCompanyInfo" >
+    insert into express_company (companyNo, companyName, companyPhone
+      )
+    values (#{companyno,jdbcType=VARCHAR}, #{companyname,jdbcType=VARCHAR}, #{companyphone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="Entity.ExpressCompanyInfo" >
+    insert into express_company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="companyno != null" >
+        companyNo,
+      </if>
+      <if test="companyname != null" >
+        companyName,
+      </if>
+      <if test="companyphone != null" >
+        companyPhone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="companyno != null" >
+        #{companyno,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyphone != null" >
+        #{companyphone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="Entity.ExpressCompanyInfo" >
+    update express_company
+    <set >
+      <if test="companyname != null" >
+        companyName = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyphone != null" >
+        companyPhone = #{companyphone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where companyNo = #{companyno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="Entity.ExpressCompanyInfo" >
+    update express_company
+    set companyName = #{companyname,jdbcType=VARCHAR},
+      companyPhone = #{companyphone,jdbcType=VARCHAR}
+    where companyNo = #{companyno,jdbcType=VARCHAR}
+  </update>
+</mapper>
